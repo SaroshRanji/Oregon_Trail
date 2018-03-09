@@ -1,0 +1,33 @@
+body {
+
+
+	background: "/images/mainmenu.png";
+background-repeat: no-repeat;
+background-size: 1600px 800px;
+
+
+}
+
+h1 {
+
+	color: grey;
+vertical-align: middle;
+line-height: 300px;
+text-align: center;
+}
+
+h3 {
+
+	color: white;
+vertical-align: middle;
+line-height: 20px;
+text-align: center;
+}
+
+h4 {
+
+	color: white;
+
+
+text-align: center;
+}

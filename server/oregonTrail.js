@@ -29,4 +29,44 @@ app.get('/trail', function(req, res) {
 	res.sendFile('trail.html', {root: './client/views'});
 });
 
+// include the controller
+var topTenController = require('./controllers/topTenController');
+var gameController = require('./controllers/gameController');
+var setupController = require('./controllers/setupController');
+
+// RESTful route for topTen
+app.route('/api/topTen')
+	.get(topTenController.getTopScores)
+	.post(topTenController.saveTopScore);
+
+app.route('/api/getRandomTerrain')
+	.get(gameController.getRandomTerrain);
+
+app.route('/api/getAllTerrains')
+	.get(gameController.getAllTerrains);	
+
+app.route('/api/gameData')
+	.get(gameController.getGameData);
+
+app.route('/api/updateGame')
+	.get(gameController.updateGame);
+
+app.route('/api/getAllWeathers')
+	.get(gameController.getAllWeathers);
+
+app.route('/api/getRandomWeather')
+	.get(gameController.getRandomWeather);
+
+app.route('/api/getGameData')
+	.get(gameController.getGameData);
+
+app.route('/api/getCurrentPace')
+	.get(gameController.getCurrentPace);
+
+app.route('/api/getAllPaces')
+	.get(gameController.getAllPaces);
+
+app.route('/api/resetGame')
+	.get(gameController.resetGame);
+
 app.listen(1337, () => console.log('Example app listening on port 1337!')) 

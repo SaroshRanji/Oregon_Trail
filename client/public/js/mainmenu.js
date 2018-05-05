@@ -75,7 +75,7 @@ function toggleSound() {
 // makes numbers 1 - 3 go to desired page
 document.body.onkeyup = function(numHit){
   if(numHit.keyCode == 49){
-    window.location = '/trail';
+    window.location = '/setup';
   }
   else if (numHit.keyCode == 50) {
 

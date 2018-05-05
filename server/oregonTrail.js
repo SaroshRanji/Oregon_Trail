@@ -4,6 +4,11 @@ const app = express()
 //app.get('/', (req, res) => res.send('Hello World!'))
 app.use(express.static('client/public'));
 
+//body parse 
+var bodyParse = require('body-parser');
+app.use(bodyParse.json({ type: 'application/json'}));
+
+
 //Route for index.html
 app.get('/', function(req, res) {
 	res.sendFile('index.html', {root: './client/views'});
@@ -68,5 +73,28 @@ app.route('/api/getAllPaces')
 
 app.route('/api/resetGame')
 	.get(gameController.resetGame);
+
+app.route('/api/setup/screen/:id')
+	.get(setupController.getgameScreen);
+	
+app.route('/api/setup/profession')
+	.post(setupController.saveProfession);
+
+app.route('/api/setup/money')
+	.post(setupController.saveMoney);
+
+app.route('/api/setup/PlayerOneName')
+	.post(setupController.savePlayerOneName);
+
+app.route('/api/setup/partyNames')
+	.post(setupController.savePartyNames);
+
+app.route('/api/setup/month')
+	.post(setupController.saveMonth);
+
+
+
+
+
 
 app.listen(1337, () => console.log('Example app listening on port 1337!')) 

@@ -53,7 +53,7 @@ exports.resetGame = function(req, res) {
     localGameData.playerNames = ["", "", "", "", ""];
     localGameData.playerStatus = ["", "", "", "", ""];
     localGameData.playerProfession = [""];
-    localGameData.playerMoney = 500;
+    localGameData.playerMoney = 0;
     localGameData.startMonth =[""];
 
 	res.setHeader('Content-Type', 'application/json');
@@ -67,6 +67,8 @@ exports.updateGame = function(req, res) {
     localGameData.currentWeather = weather.getRandomWeather();
 	localGameData.currentPace = pace.getCurrentPace();
 
+
+
 // adds current status of group health by the health loss 
 // that corresponds with the current weather that is selected
 	localGameData.groupHealth += localGameData.currentWeather.healthChange;
@@ -79,6 +81,29 @@ exports.updateGame = function(req, res) {
 // adds current status of group health by the health loss 
 // that corresponds with the pace that is selected
 	localGameData.groupHealth += localGameData.currentPace.healthChange;
+
+
+//if user is within 100 miles from beating the game they will have a 15% change to find a bear
+  if (localGameData.milesTraveled >= 400 && localGameData.milesTraveled <= 500) {
+    for (i = 0; i < 5; i++){
+        var chance = Math.floor(Math.random() * 100) + 1;
+        if (chance <= 15){
+        localGameData.message2 = "Your group encountered a bear"
+        localGameData.playerStatus[i] = "Dead";
+      } else{
+          localGameData.message2 = ""
+      }}}
+
+  //if user is within 200 miles and 400 miles they will have a 8% change to find fresh water and gain 10 health
+  if (localGameData.milesTraveled >= 200 && localGameData.milesTraveled <= 400) {
+    for (i = 0; i < 5; i++){
+        var chance = Math.floor(Math.random() * 100) + 1;
+        if (chance <= 8){
+        localGameData.message2 = "You found some fresh water"
+        localGameData.groupHealth = localGameData.groupHealth + 10;
+      } else{
+          localGameData.message2 = ""
+      }}}
 
 
 
@@ -143,7 +168,8 @@ exports.updateGame = function(req, res) {
   		localGameData.playerStatus[i] = "Dead";
   	}
   	localGameData.player
-}  
+}
+
 
 
 

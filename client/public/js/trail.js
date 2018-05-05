@@ -5,6 +5,24 @@ document.body.onkeyup = function(spaceHit){
 	}
 }
 
+
+//function for restart game button
+function restartGame() {
+  fetch('/api/resetGame').then(function(response) {
+    if (response.status !== 200) {
+      console.log(response.status + " msg: " + response.value);
+      return;
+    }
+    response.text().then(function(data) {
+      information.innerHTML = data;
+    })
+  })
+}
+
+restartButton.addEventListener("click", restartGame, false);
+
+
+
 //gets json from api route update game
 function getGameInformation() {
   fetch('/api/updateGame').then(function(response) {
@@ -19,8 +37,10 @@ function getGameInformation() {
   });
 }
 
+nextButton.addEventListener("click", getGameInformation, false);
 //run function
 getGameInformation();
+
 
 
 /*

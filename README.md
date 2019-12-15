@@ -1,2 +1,2 @@
-# jdarpino-project
-Spring 18 Class project
+Software Development 2 
+Oregon Trail Project
